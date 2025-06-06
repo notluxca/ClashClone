@@ -6,30 +6,36 @@ public class TargetingController : MonoBehaviour
 {
     private NavigationController navigationController;
     public LayerMask enemyLayerMask;
+    private bool haveEntityTarget = false;
+    private Transform currentEntityTarget;
+    public Transform enemyBaseTarget;
 
     void Awake()
     {
         navigationController = GetComponent<NavigationController>();
     }
 
-
-    void Start()
+    void Update()
     {
-
+        EvaluateCurrentTarget();
     }
 
     private void EvaluateCurrentTarget()
     {
-
+        if (currentEntityTarget == null)
+        {
+            navigationController.SetTarget(enemyBaseTarget);
+            haveEntityTarget = false;
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
+        if (haveEntityTarget) return;
         if ((enemyLayerMask.value & (1 << other.gameObject.layer)) != 0)
         {
-            Debug.Log("blabla");
-            // The object is in the target layer
-            Debug.Log("Detected object in layer: " + LayerMask.LayerToName(other.gameObject.layer));
+            haveEntityTarget = true;
+            currentEntityTarget = other.transform;
             navigationController.SetTarget(other.transform);
         }
     }
