@@ -35,4 +35,6 @@ public class NavigationController : MonoBehaviour
             thisAgent.SetDestination(lastTargetPosition);
         }
     }
+
+    public void SetTarget(Transform newTarget) => target = newTarget;
 }

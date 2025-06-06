@@ -1,16 +1,10 @@
 using UnityEngine;
 
+
+// decide team
 public class EntityController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public GameTeams thisEntityTeam;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // should update all components to correct information
 }
