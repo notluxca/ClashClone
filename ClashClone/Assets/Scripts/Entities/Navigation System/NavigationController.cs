@@ -4,16 +4,18 @@ using UnityEngine.AI;
 public class NavigationController : MonoBehaviour
 {
     public Transform target;
-    private NavMeshAgent thisAgent;
+    public NavMeshAgent thisAgent;
 
     private float updateThreshold = 0.1f;
     private Vector3 lastTargetPosition;
     private float stoppingDistanceBuffer = 0.05f;
 
+    public bool IsStoppedAtDestination { get; private set; }
+
     void Awake()
     {
         thisAgent = GetComponent<NavMeshAgent>();
-        thisAgent.updateRotation = false; // desativa rotação automática
+        thisAgent.updateRotation = false;
     }
 
     void Start()
@@ -36,7 +38,27 @@ public class NavigationController : MonoBehaviour
             thisAgent.destination = lastTargetPosition;
         }
 
+        // A lógica de estado e rotação agora roda a cada frame, sem interrupção.
+        UpdateAgentState();
         RotateAgent();
+    }
+
+    private void UpdateAgentState()
+    {
+        if (target == null)
+        {
+            IsStoppedAtDestination = true;
+            return;
+        }
+
+        if (!thisAgent.pathPending && thisAgent.remainingDistance <= thisAgent.stoppingDistance)
+        {
+            IsStoppedAtDestination = true;
+        }
+        else
+        {
+            IsStoppedAtDestination = false;
+        }
     }
 
     public void SetTarget(Transform newTarget)
@@ -51,14 +73,16 @@ public class NavigationController : MonoBehaviour
 
     private void RotateAgent()
     {
-        // Está parado no destino
-        if (!thisAgent.pathPending && thisAgent.remainingDistance <= thisAgent.stoppingDistance + stoppingDistanceBuffer)
+        // Se está parado no destino (idle OU atacando)...
+        if (IsStoppedAtDestination)
         {
-            FaceTarget(); // olha para o alvo
+            // ...SEMPRE encara o alvo.
+            FaceTarget();
         }
+        // Se está se movendo...
         else if (thisAgent.velocity.sqrMagnitude > 0.01f)
         {
-            // gira na direção da velocidade (movimento)
+            // ...gira na direção do movimento.
             Vector3 direction = thisAgent.velocity.normalized;
             direction.y = 0;
 
