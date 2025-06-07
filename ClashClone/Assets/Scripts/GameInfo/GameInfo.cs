@@ -9,9 +9,8 @@ public static class GameInfo
 
     static GameInfo()
     {
-        CoguTeamEntityLayer = LayerMask.NameToLayer("CoguEntity");
-        LwoasTeamEntityLayer = LayerMask.NameToLayer("LwoasEntity");
-        Debug.Log(CoguTeamEntityLayer.value + " " + LwoasTeamEntityLayer.value);
+        CoguTeamEntityLayer = LayerMask.GetMask("CoguEntity");
+        LwoasTeamEntityLayer = LayerMask.GetMask("LwoasEntity");
         CoguBaseTransform = GameObject.FindWithTag("CoguTeamBase").transform;
         LwosBaseTransform = GameObject.FindWithTag("LwoasTeamBase").transform;
     }

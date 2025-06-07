@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1927404481120031317}
   - component: {fileID: 5687051312225525448}
   - component: {fileID: 1788120129483358785}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MeleeEntity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,6 +38,7 @@ Transform:
   m_LocalScale: {x: 3.0064, y: 3.0064, z: 3.0064}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2941598759631146193}
   - {fileID: 6739984502705108387}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -107,6 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisEntityTeam: 0
+  targetingController: {fileID: 0}
 --- !u!114 &2531504902937640192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,6 +137,7 @@ MonoBehaviour:
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 0
+  enemyBaseTarget: {fileID: 0}
 --- !u!136 &7951603843381083952
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -228,6 +231,51 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1554140093378029663
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2941598759631146193}
+  - component: {fileID: 2345957114444748127}
+  m_Layer: 10
+  m_Name: HitReceiver
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2941598759631146193
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554140093378029663}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 180799134341789417}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2345957114444748127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554140093378029663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7550d06c7c5e13e4ea386c84eaef22a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 2
 --- !u!1 &8052754582293874199
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,6 +286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6739984502705108387}
   - component: {fileID: 2914789270464945157}
+  - component: {fileID: 8460743254901243323}
   m_Layer: 0
   m_Name: Damager
   m_TagString: Untagged
@@ -277,7 +326,19 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1.555192, y: 1.2567544, z: 1.1090922}
   m_Center: {x: 0.017259017, y: 0.12837718, z: 0.0545461}
+--- !u!114 &8460743254901243323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8052754582293874199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80cc50584c666ca4a820b4daae7b7859, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

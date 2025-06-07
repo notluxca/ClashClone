@@ -5,7 +5,7 @@ using UnityEngine;
 public class EntityController : MonoBehaviour
 {
     public GameTeams thisEntityTeam;
-    TargetingController targetingController;
+    public TargetingController targetingController;
 
     void Awake()
     {
@@ -18,14 +18,15 @@ public class EntityController : MonoBehaviour
         switch (thisEntityTeam)
         {
             case GameTeams.CogumeloTeam:
-                targetingController.enemyLayerMask = LayerMask.GetMask("LwoasEntity");
+                targetingController.enemyLayerMask = GameInfo.LwoasTeamEntityLayer;
                 targetingController.enemyBaseTarget = GameInfo.LwosBaseTransform;
                 break;
 
             case GameTeams.LwosTeam:
-                targetingController.enemyLayerMask = LayerMask.GetMask("CoguEntity");
+                targetingController.enemyLayerMask = GameInfo.CoguTeamEntityLayer;
                 targetingController.enemyBaseTarget = GameInfo.CoguBaseTransform;
                 break;
         }
     }
+
 }
