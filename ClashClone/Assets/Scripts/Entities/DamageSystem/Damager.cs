@@ -5,7 +5,7 @@ public class Damager : MonoBehaviour
 {
 
     EntityController entityController;
-    LayerMask enemyLayerMask;
+    [SerializeField] private LayerMask enemyLayerMask;
 
     void Awake()
     {
@@ -18,7 +18,7 @@ public class Damager : MonoBehaviour
     }
 
 
-    public void ApplyDamage(IDamageable damageable, int amount)
+    public virtual void ApplyDamage(IDamageable damageable, int amount)
     {
         damageable.TakeDamage(amount);
     }
