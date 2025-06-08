@@ -22,7 +22,7 @@ public abstract class Damageable : MonoBehaviour, IDamageable
 
     protected virtual void Die()
     {
-        Debug.Log($"{gameObject.name} died.");
+        // Debug.Log($"{gameObject.name} died.");
         // You can override this in subclasses for specific death behavior
         Destroy(gameObject.transform.parent.gameObject);
     }

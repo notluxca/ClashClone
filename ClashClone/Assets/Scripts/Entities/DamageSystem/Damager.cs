@@ -25,11 +25,8 @@ public class Damager : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("entrei em trigger");
         // filter colliders that are not enemies
         if (!((enemyLayerMask.value & (1 << other.gameObject.layer)) != 0)) return;
-
-        Debug.Log("Detectei algo para dar dano");
 
         Damageable damageable = other.GetComponentInChildren<Damageable>();
         if (damageable != null)

@@ -71,6 +71,21 @@ public class NavigationController : MonoBehaviour
         }
     }
 
+    public void SetTargetWithRandomOffset(Transform newTarget, float offsetRange = 1.5f)
+    {
+        target = newTarget;
+
+        if (target != null)
+        {
+            // Calcula um pequeno deslocamento aleatório no plano XZ
+            Vector2 randomOffset2D = Random.insideUnitCircle * offsetRange;
+            Vector3 offsetPosition = target.position + new Vector3(randomOffset2D.x, 0f, randomOffset2D.y);
+
+            lastTargetPosition = offsetPosition;
+            thisAgent.destination = lastTargetPosition;
+        }
+    }
+
     private void RotateAgent()
     {
         // Se está parado no destino (idle OU atacando)...
@@ -98,13 +113,32 @@ public class NavigationController : MonoBehaviour
     {
         if (target == null) return;
 
-        Vector3 direction = (target.position - transform.position).normalized;
-        direction.y = 0;
+        Vector3 targetCenter = GetTargetCenter(target);
+        Vector3 direction = (targetCenter - transform.position).normalized;
+        direction.y = 0f;
 
         if (direction.sqrMagnitude > 0.001f)
         {
             Quaternion lookRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
         }
+    }
+
+    private Vector3 GetTargetCenter(Transform t)
+    {
+        Collider col = t.GetComponent<Collider>();
+        if (col != null)
+        {
+            return col.bounds.center;
+        }
+
+        Renderer renderer = t.GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            return renderer.bounds.center;
+        }
+
+        // Fallback: apenas a posição do Transform
+        return t.position;
     }
 }
