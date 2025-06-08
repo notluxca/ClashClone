@@ -59,7 +59,7 @@ MonoBehaviour:
   attackAnimationName: CapsuleAttack
   moveAnimationName: CapsuleWalk
   idleAnimationName: CapsuleIdle
-  attackCooldown: 0.8
+  attackCooldown: 2
   targetingController: {fileID: 0}
 --- !u!114 &2531504902937640192
 MonoBehaviour:
