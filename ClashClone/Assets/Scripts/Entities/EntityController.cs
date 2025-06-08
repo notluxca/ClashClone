@@ -14,6 +14,7 @@ public class EntityController : MonoBehaviour
     [Header("Referências")]
     public TargetingController targetingController;
     private NavigationController navigationController;
+    private Rigidbody rigidBody;
     private Animator animator;
 
     private float lastAttackTime = -999f;
@@ -22,6 +23,7 @@ public class EntityController : MonoBehaviour
     {
         targetingController = GetComponent<TargetingController>();
         navigationController = GetComponent<NavigationController>();
+        rigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         SetTeamConfigs();
     }

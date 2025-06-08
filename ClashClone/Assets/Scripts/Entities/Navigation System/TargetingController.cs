@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections; // Adicionado para usar Coroutine
 
 // Garante que o objeto tenha os componentes necessários
-[RequireComponent(typeof(SphereCollider))]
 [RequireComponent(typeof(NavigationController))]
 public class TargetingController : MonoBehaviour
 {
@@ -15,14 +14,16 @@ public class TargetingController : MonoBehaviour
     public float targetEvaluationFrequency = 0.2f;
 
     // Componentes e Estado
+    private EntityController entityController;
     private NavigationController navigationController;
-    private SphereCollider detectionCollider; // Usaremos o raio deste colisor para a detecção
+    public SphereCollider detectionCollider; // Usaremos o raio deste colisor para a detecção
     private Transform currentEntityTarget;
 
     void Awake()
     {
         navigationController = GetComponent<NavigationController>();
-        detectionCollider = GetComponent<SphereCollider>();
+        // detectionCollider = GetComponent<SphereCollider>();
+        entityController = GetComponent<EntityController>();
 
         // Garante que o colisor seja um trigger para não causar colisões físicas
         detectionCollider.isTrigger = true;
@@ -42,22 +43,32 @@ public class TargetingController : MonoBehaviour
     {
         while (true)
         {
-            // 1. Procura pelo inimigo mais próximo dentro do raio de detecção
+            // 1. Procura pelo inimigo mais próximo.
             FindClosestEnemy();
 
-            // 2. Decide qual alvo o NavigationController deve seguir
+            // 2. Decide qual alvo seguir.
             if (currentEntityTarget != null)
             {
-                // Se encontrou uma entidade inimiga, define como alvo
-                navigationController.SetTarget(currentEntityTarget);
+                // Se um inimigo foi encontrado, ele é a prioridade.
+                // Verificamos se o alvo já não é este inimigo para evitar chamadas desnecessárias.
+                if (navigationController.target != currentEntityTarget)
+                {
+                    navigationController.SetTarget(currentEntityTarget);
+                }
             }
             else
             {
-                // Se não há inimigos por perto, define a base como alvo
-                navigationController.SetTarget(enemyBaseTarget);
+
+                if (navigationController.target != enemyBaseTarget)
+                {
+
+                    navigationController.SetTargetWithRandomOffset(enemyBaseTarget, 20f);
+                    // A entidade recebe seu "posto de ataque" na base e se compromete com ele.
+                    // Ajuste o raio (5f) conforme necessário.
+                }
             }
 
-            // Espera um curto período antes de reavaliar, para otimização
+            // Espera para a próxima avaliação.
             yield return new WaitForSeconds(targetEvaluationFrequency);
         }
     }
