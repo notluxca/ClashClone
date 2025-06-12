@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -23,34 +24,31 @@ public class EntityController : MonoBehaviour
 
     // Controle de estado interno
     private float lastAttackTime = -999f;
+    private bool baseDestroyed = false;
 
     void Awake()
     {
-        BaseController.OnBaseDestroyed += () => PlayAnimation(idleAnimationName); // Destrói a entidade quando a base é destruída
         // navMeshObstacle = GetComponent<NavMeshObstacle>();
         // navMeshObstacle.enabled = false; // Desabilita o NavMeshObstacle para evitar interferência com a navegação
         targetingController = GetComponent<TargetingController>();
         navigationController = GetComponent<NavigationController>();
         thisRigidbody = GetComponent<Rigidbody>();
-        animator = GetComponentInChildren<Animator>();
-        targetingController.onReachEnemyBase.AddListener(OnEnemyBaseReach);
+        animator = GetComponentInChildren<Animator>();   
         SetTeamConfigs();
     }
 
-    private void OnEnemyBaseReach()
-    {
+    // private void OnEnemyBaseReach()
+    // {
 
-        StartCoroutine(BaseReachSequence());
-    }
+    //     StartCoroutine(BaseReachSequence());
+    // }
 
-    IEnumerator BaseReachSequence()
-    {
-        // navigationController.thisAgent.enabled = false;
-        thisRigidbody.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
-        yield return new WaitForSeconds(0.1f);
-        // navMeshObstacle.enabled = true;
+    // IEnumerator BaseReachSequence()
+    // {
+    //     yield return new WaitForSeconds(0.2f);
+    //     // navMeshObstacle.enabled = true;
 
-    }
+    // }
 
     private void Update()
     {
@@ -61,6 +59,14 @@ public class EntityController : MonoBehaviour
     {
         if (navigationController == null || animator == null) return;
         bool isMoving = !navigationController.IsStoppedAtDestination;
+        
+        if(navigationController.target == null)
+        {
+            // Se não há um alvo, não podemos atacar.
+            // Então, vamos garantir que estamos na animação de idle.
+            PlayAnimation(idleAnimationName);
+            return;
+        }
         
         if (isMoving)
         {
@@ -79,12 +85,13 @@ public class EntityController : MonoBehaviour
             // Se não estamos atacando, podemos iniciar um novo ataque?
             // A verificação 'IsStoppedAtDestination' aqui ainda é útil para garantir 
             // que o ataque só aconteça no estado de "chegada".
-            if (navigationController.IsStoppedAtDestination && Time.time >= lastAttackTime + attackCooldown || 
-            targetingController.hasReachedBase && Time.time >= lastAttackTime + attackCooldown)
+            if (navigationController.IsStoppedAtDestination && Time.time >= lastAttackTime + attackCooldown ||
+            targetingController.hasReachedBase && Time.time >= lastAttackTime + attackCooldown && !baseDestroyed)
             {
+                Debug.Log("Solicitando ataque");
                 lastAttackTime = Time.time;
                 PlayAnimation(attackAnimationName);
-                
+
             }
             else
             {

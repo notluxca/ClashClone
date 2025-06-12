@@ -171,6 +171,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoguEntity
       objectReference: {fileID: 0}
+    - target: {fileID: 1335350742851147806, guid: ffce6ad4dda3fdb4aab8f9bc392b0094, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1073,6 +1077,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoguEntity (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1335350742851147806, guid: ffce6ad4dda3fdb4aab8f9bc392b0094, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1374,6 +1382,18 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 0
   m_Center: {x: 0, y: 0, z: -0.02}
   m_TimeToStationary: 0.5
+--- !u!114 &937293097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937293092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80d43805226fb804891b0e5afd0e27f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &938034312
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1384,7 +1404,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 180799134341789417, guid: 9b0f8ed9e25b60043a9a33a6f7af8f33, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 24
+      value: -50.3
       objectReference: {fileID: 0}
     - target: {fileID: 180799134341789417, guid: 9b0f8ed9e25b60043a9a33a6f7af8f33, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1392,7 +1412,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 180799134341789417, guid: 9b0f8ed9e25b60043a9a33a6f7af8f33, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14
+      value: -12.8
       objectReference: {fileID: 0}
     - target: {fileID: 180799134341789417, guid: 9b0f8ed9e25b60043a9a33a6f7af8f33, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1426,13 +1446,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: TankLwoas
       objectReference: {fileID: 0}
-    - target: {fileID: 2591182388674714116, guid: 9b0f8ed9e25b60043a9a33a6f7af8f33, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.22
-      objectReference: {fileID: 0}
-    - target: {fileID: 6739984502705108387, guid: 9b0f8ed9e25b60043a9a33a6f7af8f33, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.65
+    - target: {fileID: 3355940783490222891, guid: 9b0f8ed9e25b60043a9a33a6f7af8f33, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2109,6 +2125,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b43f435a14221c44eb0f71e92fdd81dc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 937293096}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b43f435a14221c44eb0f71e92fdd81dc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 937293097}
   m_SourcePrefab: {fileID: 100100000, guid: b43f435a14221c44eb0f71e92fdd81dc, type: 3}
 --- !u!1 &1756159046
 GameObject:
@@ -2398,6 +2417,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RangedLwoas
       objectReference: {fileID: 0}
+    - target: {fileID: 1335350742851147806, guid: 257e5bba3f67b99418116be803ad594e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2025679292694274678, guid: 257e5bba3f67b99418116be803ad594e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0.7354253
@@ -2681,7 +2704,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5537413966659074159, guid: 0d739ff437d94884aa9e231803f18656, type: 3}
       propertyPath: maxHealth
-      value: 60
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8775036364098553199, guid: 0d739ff437d94884aa9e231803f18656, type: 3}
       propertyPath: m_Name
@@ -3245,6 +3268,10 @@ PrefabInstance:
     - target: {fileID: 5255161893682840868, guid: 4aca1d055c78bb14692faf743b05e097, type: 3}
       propertyPath: m_Name
       value: RangedCogu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5255161893682840868, guid: 4aca1d055c78bb14692faf743b05e097, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5434656940533902148, guid: 4aca1d055c78bb14692faf743b05e097, type: 3}
       propertyPath: m_Layer

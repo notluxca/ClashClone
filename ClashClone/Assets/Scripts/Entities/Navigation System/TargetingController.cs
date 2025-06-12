@@ -44,7 +44,7 @@ public class TargetingController : MonoBehaviour
 
     private void CheckArrivalAtBase()
     {
-       
+        if (enemyBaseTarget == null ) return;
             float distance = Vector3.Distance(transform.position, enemyBaseTarget.position);
             if (distance <= baseArrivalThreshold && !hasReachedBase)
             {
