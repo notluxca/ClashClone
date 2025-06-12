@@ -45,6 +45,7 @@ public class NavigationController : MonoBehaviour
 
     private void UpdateAgentState()
     {
+        if (!thisAgent.enabled) return;
         if (target == null)
         {
             IsStoppedAtDestination = true;
@@ -78,45 +79,46 @@ public class NavigationController : MonoBehaviour
     /// <param name="newTarget">O transform do novo alvo.</param>
     /// <param name="minOffset">A distância mínima do deslocamento a partir da posição do alvo.</param>
     /// <param name="maxOffset">A distância máxima do deslocamento a partir da posição do alvo.</param>
-    public void SetTargetWithRandomOffset(Transform newTarget, float minOffset = 2.0f, float maxOffset = 5.0f)
-    {
-        target = newTarget;
+    // public void SetTargetWithRandomOffset(Transform newTarget, float minOffset = 2.0f, float maxOffset = 5.0f)
+    // {
+    //     target = newTarget;
 
-        if (target != null)
-        {
-            // Passo 1: Gerar uma direção 2D aleatória.
-            // Usamos .normalized para garantir que o vetor tenha um comprimento de exatamente 1.
-            // Isso nos dá uma direção pura, sem influência da distância ainda.
-            Vector2 randomDirection = Random.insideUnitCircle.normalized;
+    //     if (target != null)
+    //     {
+    //         // Passo 1: Gerar uma direção 2D aleatória.
+    //         // Usamos .normalized para garantir que o vetor tenha um comprimento de exatamente 1.
+    //         // Isso nos dá uma direção pura, sem influência da distância ainda.
+    //         Vector2 randomDirection = Random.insideUnitCircle.normalized;
 
-            // Passo 2: Escolher uma distância aleatória dentro do intervalo definido.
-            // Random.Range(min, max) sorteia um número entre o mínimo e o máximo.
-            float randomDistance = Random.Range(minOffset, maxOffset);
+    //         // Passo 2: Escolher uma distância aleatória dentro do intervalo definido.
+    //         // Random.Range(min, max) sorteia um número entre o mínimo e o máximo.
+    //         float randomDistance = Random.Range(minOffset, maxOffset);
 
-            // Passo 3: Calcular o vetor de deslocamento final.
-            // Multiplicamos a direção (comprimento 1) pela distância aleatória.
-            // Isso cria um vetor na direção certa e com o comprimento desejado.
-            Vector3 offset = new Vector3(randomDirection.x, 0f, randomDirection.y) * randomDistance;
+    //         // Passo 3: Calcular o vetor de deslocamento final.
+    //         // Multiplicamos a direção (comprimento 1) pela distância aleatória.
+    //         // Isso cria um vetor na direção certa e com o comprimento desejado.
+    //         Vector3 offset = new Vector3(randomDirection.x, 0f, randomDirection.y) * randomDistance;
 
-            // Passo 4: Aplicar o deslocamento à posição original do alvo.
-            Vector3 destinationPosition = target.position + offset;
+    //         // Passo 4: Aplicar o deslocamento à posição original do alvo.
+    //         Vector3 destinationPosition = target.position + offset;
 
-            // Um Debug.Log mais informativo para ajudar a visualizar.
-            Debug.Log($"Direção: ({randomDirection.x:F2}, {randomDirection.y:F2}), Distância: {randomDistance:F2} -> Destino: {destinationPosition}");
+            
 
-            // Passo 5: Definir o destino do agente.
-            lastTargetPosition = destinationPosition;
-            thisAgent.destination = lastTargetPosition;
-        }
-    }
+    //         // Passo 5: Definir o destino do agente.
+    //         lastTargetPosition = destinationPosition;
+    //         thisAgent.destination = lastTargetPosition;
+    //     }
+    // }
 
     private void RotateAgent()
     {
+        FaceTarget();
+        if (!thisAgent.enabled) return;
         // Se está parado no destino (idle OU atacando)...
         if (IsStoppedAtDestination)
         {
-            // ...SEMPRE encara o alvo.
-            FaceTarget();
+            
+            
         }
         // Se está se movendo...
         else if (thisAgent.velocity.sqrMagnitude > 0.01f)

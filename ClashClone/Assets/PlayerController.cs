@@ -6,6 +6,10 @@ public class PlayerController : MonoBehaviour
     public GameObject[] entityPrefabs; // Lista com os 3 personagens
     private int currentPrefabIndex = 0;
 
+    private float InitialEnergy;
+    public float currentEnergy;
+    
+
     private Camera mainCamera;
 
     void Start()

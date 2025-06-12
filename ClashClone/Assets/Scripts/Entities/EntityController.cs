@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EntityController : MonoBehaviour
 {
@@ -6,26 +8,47 @@ public class EntityController : MonoBehaviour
     public GameTeams thisEntityTeam;
 
     [Header("Configurações de Combate")]
-    public string attackAnimationName = "CapsuleAttack";
-    public string moveAnimationName = "CapsuleWalk";
-    public string idleAnimationName = "CapsuleIdle";
+    public string attackAnimationName = "Attack";
+    public string moveAnimationName = "Walk";
+    public string idleAnimationName = "Idle";
 
     public float attackCooldown = 2f;
 
     [Header("Referências")]
     public TargetingController targetingController;
     private NavigationController navigationController;
-    private Animator animator;
+    private NavMeshObstacle navMeshObstacle;
+    Rigidbody thisRigidbody;
+    public Animator animator;
 
     // Controle de estado interno
     private float lastAttackTime = -999f;
 
     void Awake()
     {
+        navMeshObstacle = GetComponent<NavMeshObstacle>();
+        navMeshObstacle.enabled = false; // Desabilita o NavMeshObstacle para evitar interferência com a navegação
         targetingController = GetComponent<TargetingController>();
         navigationController = GetComponent<NavigationController>();
-        animator = GetComponent<Animator>();
+        thisRigidbody = GetComponent<Rigidbody>();
+        animator = GetComponentInChildren<Animator>();
+        targetingController.onReachEnemyBase.AddListener(OnEnemyBaseReach);
         SetTeamConfigs();
+    }
+
+    private void OnEnemyBaseReach()
+    {
+
+        StartCoroutine(BaseReachSequence());
+    }
+
+    IEnumerator BaseReachSequence()
+    {
+        // navigationController.thisAgent.enabled = false;
+        thisRigidbody.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
+        yield return new WaitForSeconds(0.1f);
+        // navMeshObstacle.enabled = true;
+
     }
 
     private void Update()
@@ -62,12 +85,14 @@ public class EntityController : MonoBehaviour
             // Se não estamos atacando, podemos iniciar um novo ataque?
             // A verificação 'IsStoppedAtDestination' aqui ainda é útil para garantir 
             // que o ataque só aconteça no estado de "chegada".
-            if (navigationController.IsStoppedAtDestination && Time.time >= lastAttackTime + attackCooldown)
+            if (navigationController.IsStoppedAtDestination && Time.time >= lastAttackTime + attackCooldown || 
+            targetingController.hasReachedBase && Time.time >= lastAttackTime + attackCooldown)
             {
+                Debug.Log("Solicitando ataque caralho");
                 // Sim, então atacamos.
                 lastAttackTime = Time.time;
                 PlayAnimation(attackAnimationName);
-                Debug.Log(gameObject.name + " está atacando com: " + attackAnimationName);
+                
             }
             // Se não estamos atacando e não podemos atacar (em cooldown), ficamos parados.
             else
