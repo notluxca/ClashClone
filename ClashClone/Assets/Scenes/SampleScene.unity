@@ -1374,6 +1374,71 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 0
   m_Center: {x: 0, y: 0, z: -0.02}
   m_TimeToStationary: 0.5
+--- !u!1001 &938034312
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 180799134341789417, guid: 9b0f8ed9e25b60043a9a33a6f7af8f33, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 180799134341789417, guid: 9b0f8ed9e25b60043a9a33a6f7af8f33, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 180799134341789417, guid: 9b0f8ed9e25b60043a9a33a6f7af8f33, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -14
+      objectReference: {fileID: 0}
+    - target: {fileID: 180799134341789417, guid: 9b0f8ed9e25b60043a9a33a6f7af8f33, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 180799134341789417, guid: 9b0f8ed9e25b60043a9a33a6f7af8f33, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 180799134341789417, guid: 9b0f8ed9e25b60043a9a33a6f7af8f33, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 180799134341789417, guid: 9b0f8ed9e25b60043a9a33a6f7af8f33, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 180799134341789417, guid: 9b0f8ed9e25b60043a9a33a6f7af8f33, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 180799134341789417, guid: 9b0f8ed9e25b60043a9a33a6f7af8f33, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 180799134341789417, guid: 9b0f8ed9e25b60043a9a33a6f7af8f33, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1335350742851147806, guid: 9b0f8ed9e25b60043a9a33a6f7af8f33, type: 3}
+      propertyPath: m_Name
+      value: TankLwoas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2591182388674714116, guid: 9b0f8ed9e25b60043a9a33a6f7af8f33, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 6739984502705108387, guid: 9b0f8ed9e25b60043a9a33a6f7af8f33, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.65
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9b0f8ed9e25b60043a9a33a6f7af8f33, type: 3}
 --- !u!1 &1087417507
 GameObject:
   m_ObjectHideFlags: 0
@@ -3259,3 +3324,4 @@ SceneRoots:
   - {fileID: 31871581}
   - {fileID: 718700510}
   - {fileID: 8446067216717181895}
+  - {fileID: 938034312}
