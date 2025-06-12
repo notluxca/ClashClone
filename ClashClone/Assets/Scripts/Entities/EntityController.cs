@@ -26,6 +26,7 @@ public class EntityController : MonoBehaviour
 
     void Awake()
     {
+        BaseController.OnBaseDestroyed += () => PlayAnimation(idleAnimationName); // Destrói a entidade quando a base é destruída
         // navMeshObstacle = GetComponent<NavMeshObstacle>();
         // navMeshObstacle.enabled = false; // Desabilita o NavMeshObstacle para evitar interferência com a navegação
         targetingController = GetComponent<TargetingController>();
