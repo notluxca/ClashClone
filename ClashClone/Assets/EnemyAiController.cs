@@ -31,7 +31,7 @@ public class EnemySpawner : MonoBehaviour
         BaseController.OnBaseDestroyed += TurnOff;
     }
 
-    private void TurnOff()
+    private void TurnOff(string Name)
     {
         BaseController.OnBaseDestroyed -= TurnOff; // Desinscreve do evento para evitar chamadas futuras 
         this.gameObject.SetActive(false);

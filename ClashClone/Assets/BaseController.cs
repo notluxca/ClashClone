@@ -3,11 +3,13 @@ using UnityEngine;
 
 public class BaseController : MonoBehaviour
 {
-    public static Action OnBaseDestroyed;
+    public static Action<String> OnBaseDestroyed;
 
 
     void OnDestroy()
     {
-        OnBaseDestroyed?.Invoke();
+        if (this.gameObject.CompareTag("LwoasTeamBase")) OnBaseDestroyed?.Invoke("Lwoas");
+        if (this.gameObject.CompareTag("CoguTeamBase")) OnBaseDestroyed?.Invoke("Cogu");
+
     }
 }

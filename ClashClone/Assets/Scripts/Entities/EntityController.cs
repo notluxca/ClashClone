@@ -88,7 +88,7 @@ public class EntityController : MonoBehaviour
             if (navigationController.IsStoppedAtDestination && Time.time >= lastAttackTime + attackCooldown ||
             targetingController.hasReachedBase && Time.time >= lastAttackTime + attackCooldown && !baseDestroyed)
             {
-                Debug.Log("Solicitando ataque");
+                // Debug.Log("Solicitando ataque");
                 lastAttackTime = Time.time;
                 PlayAnimation(attackAnimationName);
 
