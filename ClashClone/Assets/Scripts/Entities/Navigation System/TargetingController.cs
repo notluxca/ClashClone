@@ -65,6 +65,8 @@ public class TargetingController : MonoBehaviour
             {
                 if (navigationController.target != currentEntityTarget)
                 {
+                    // 
+                    Debug.Log($"Setting target to {currentEntityTarget.name}");
                     navigationController.SetTarget(currentEntityTarget);
                     hasReachedBase = false; // Reset se mudar de alvo
                 }

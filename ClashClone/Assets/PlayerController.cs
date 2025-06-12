@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        currentPrefabIndex = 10; // Inicializa sem personagem selecionado
         mainCamera = Camera.main;
     }
 
@@ -27,7 +28,8 @@ public class PlayerController : MonoBehaviour
     {
         HandleCharacterSelection();
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && 
+            Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, Mathf.Infinity, placeableGroundLayerMask))
         {
             
             if (energyController.TrySpendEnergy(GetCurrentEnemyCost())) // return false if not enough energy
