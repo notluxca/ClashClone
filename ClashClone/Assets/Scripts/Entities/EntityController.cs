@@ -17,7 +17,7 @@ public class EntityController : MonoBehaviour
     [Header("Referências")]
     public TargetingController targetingController;
     private NavigationController navigationController;
-    private NavMeshObstacle navMeshObstacle;
+    // private NavMeshObstacle navMeshObstacle;
     Rigidbody thisRigidbody;
     public Animator animator;
 
@@ -26,8 +26,8 @@ public class EntityController : MonoBehaviour
 
     void Awake()
     {
-        navMeshObstacle = GetComponent<NavMeshObstacle>();
-        navMeshObstacle.enabled = false; // Desabilita o NavMeshObstacle para evitar interferência com a navegação
+        // navMeshObstacle = GetComponent<NavMeshObstacle>();
+        // navMeshObstacle.enabled = false; // Desabilita o NavMeshObstacle para evitar interferência com a navegação
         targetingController = GetComponent<TargetingController>();
         navigationController = GetComponent<NavigationController>();
         thisRigidbody = GetComponent<Rigidbody>();
