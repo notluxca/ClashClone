@@ -18,6 +18,11 @@ public class UICharacterGroupController : MonoBehaviour
         PlayerController.CharacterIndexSelected += OnPortraitSelected;
     }
 
+    void OnDestroy()
+    {
+        PlayerController.CharacterIndexSelected -= OnPortraitSelected;
+    }
+
     // Call this method when the event is received with the new index
     public void OnPortraitSelected(int index)
     {
