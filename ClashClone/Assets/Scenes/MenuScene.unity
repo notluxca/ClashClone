@@ -1592,12 +1592,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Selecione seus herois com 1, 2 e 3
-
-    Clique na sua ilha para o invocar
-    caso tenha energia o suficiente.
-
-    Proteja a sua torre e destrua a do inimigo.'
+  m_text: "\n- Pressione 1, 2 ou 3 para selecionar um her\xF3i.\n\n- Clique na sua
+    ilha para invoc\xE1-lo, caso tenha energia suficiente.\n\n- Proteja sua torre
+    e destrua a torre inimiga para vencer."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d29f37aab11ce0d4aad4b1427db1b7b2, type: 2}
   m_sharedMaterial: {fileID: -3491444765228802700, guid: d29f37aab11ce0d4aad4b1427db1b7b2, type: 2}
@@ -1636,7 +1633,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -40.15
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
